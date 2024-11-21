@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "My Chrome Extension",
+  "version": "1.0",
+  "description": "A Chrome extension using TypeScript",
+  "permissions": ["activeTab", "scripting", "tabs"],
+  "host_permissions": ["https://*.spotify.com/*"],
+  "background": {
+    "service_worker": "dist/background.js"
+  },
+  "action": {
+    "default_popup": "dist/popup.html",
+    "default_icon": {
+      "16": "src/images/spotify.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.spotify.com/*"],
+      "js": ["dist/content.js"]
+    }
+  ]
+}
