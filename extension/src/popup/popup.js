@@ -1,7 +1,5 @@
-import "./popup.css";
-
 document.getElementById("extract")?.addEventListener("click", () => {
-  chrome.runtime.sendMessage({ action: "inject_content_script" }, (response: { status: string; error?: string }) => {
+  chrome.runtime.sendMessage({ action: "inject_content_script" }, (response) => {
     if (response?.status === "success") {
       console.log("Content script injected successfully");
 
@@ -10,7 +8,7 @@ document.getElementById("extract")?.addEventListener("click", () => {
           chrome.tabs.sendMessage(
             tabs[0].id,
             { action: "extract_data" },
-            (response: { data?: any[]; error?: string }) => {
+            (response) => {
               if (response?.data) {
                 console.log("Data received in popup:", response.data);
                 const output = document.getElementById("output");
@@ -32,4 +30,4 @@ document.getElementById("extract")?.addEventListener("click", () => {
       if (output) output.textContent = `Injection error: ${response?.error || "Unknown error"}`;
     }
   });
-});
+}); 

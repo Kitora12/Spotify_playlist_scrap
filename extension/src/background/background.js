@@ -5,21 +5,18 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
         chrome.scripting.executeScript(
           {
             target: { tabId: tabs[0].id },
-            files: ["dist/content.js"],
+            files: ["src/scripts/content.js"],
           },
           () => {
             if (chrome.runtime.lastError) {
-              console.error("Content script injection failed:", chrome.runtime.lastError.message);
               sendResponse({ status: "error", error: chrome.runtime.lastError.message });
             } else {
-              console.log("Content script injected successfully");
               sendResponse({ status: "success" });
             }
           }
         );
       }
     });
-
     return true;
   }
-});
+}); 

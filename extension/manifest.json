@@ -1,15 +1,15 @@
 {
   "manifest_version": 3,
-  "name": "My Chrome Extension",
+  "name": "Spotify playlist scrapper",
   "version": "1.0",
-  "description": "A Chrome extension using TypeScript",
+  "description": "An extension that scrap your spotify playlist",
   "permissions": ["activeTab", "scripting", "tabs"],
   "host_permissions": ["https://*.spotify.com/*"],
   "background": {
-    "service_worker": "dist/background.js"
+    "service_worker": "src/background/background.js"
   },
   "action": {
-    "default_popup": "dist/popup.html",
+    "default_popup": "src/popup/popup.html",
     "default_icon": {
       "16": "src/images/spotify.png"
     }
@@ -17,7 +17,7 @@
   "content_scripts": [
     {
       "matches": ["https://*.spotify.com/*"],
-      "js": ["dist/content.js"]
+      "js": ["src/scripts/content.js"]
     }
   ]
 }

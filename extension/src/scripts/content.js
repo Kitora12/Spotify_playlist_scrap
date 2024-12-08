@@ -1,13 +1,11 @@
-async function scrollToLoadAllTracks(timeout: number = 30000): Promise<void> {
-  return new Promise<void>((resolve, reject) => {
+function scrollToLoadAllTracks(timeout = 30000) {
+  return new Promise((resolve, reject) => {
     const startTime = Date.now();
     let lastTrackCount = 0;
 
     const interval = setInterval(() => {
-      // Défile vers le bas
       window.scrollBy(0, window.innerHeight);
 
-      // Compte les pistes actuellement visibles
       const currentTrackCount = document.querySelectorAll('[data-testid="tracklist-row"]').length;
       console.log(`Tracks visible: ${currentTrackCount}`);
 
@@ -21,18 +19,18 @@ async function scrollToLoadAllTracks(timeout: number = 30000): Promise<void> {
           resolve();
         }
       } else {
-        lastTrackCount = currentTrackCount; // Met à jour le nombre de pistes chargées
+        lastTrackCount = currentTrackCount;
       }
-    }, 500); // Attente de 500 ms entre les défilements pour permettre le chargement
+    }, 500);
   });
 }
 
-chrome.runtime.onMessage.addListener((message: { action: string }, sender, sendResponse: (response: any) => void) => {
+chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
   if (message.action === "extract_data") {
     (async () => {
       try {
         console.log("Starting scrolling to load all tracks...");
-        await scrollToLoadAllTracks(); // Attendre que toutes les pistes soient chargées
+        await scrollToLoadAllTracks();
         console.log("Scrolling completed. Extracting data...");
 
         const tracks = document.querySelectorAll('[data-testid="tracklist-row"]');
@@ -51,12 +49,12 @@ chrome.runtime.onMessage.addListener((message: { action: string }, sender, sendR
 
         console.log(`Extracted ${data.length} tracks`);
         sendResponse({ data });
-      } catch (error: unknown) {
-        console.error("Error during scrolling or extraction:", error instanceof Error ? error.message : error);
-        sendResponse({ error: error instanceof Error ? error.message : "Unknown error occurred" });
+      } catch (error) {
+        console.error("Error during scrolling or extraction:", error.message || error);
+        sendResponse({ error: error.message || "Unknown error occurred" });
       }
     })();
 
-    return true; // Maintient le port ouvert pour les opérations asynchrones
+    return true;
   }
-});
+}); 
