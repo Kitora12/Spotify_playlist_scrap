@@ -1,0 +1,87 @@
+/* Importation de la police Roboto */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Général */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 10px;
+    background-color: #f9f9f9;
+    color: #333;
+    width: 300px;
+    box-sizing: border-box;
+}
+
+/* Titre */
+h1 {
+    font-size: 18px;
+    color: #444;
+    margin: 0 0 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Bouton */
+button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: white;
+    background-color: #4caf50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+button:active {
+    background-color: #3e8e41;
+}
+
+/* Statut de scraping */
+#scraping-status {
+    font-size: 14px;
+    color: #555;
+    margin: 10px 0;
+    text-align: center;
+    padding: 5px;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+/* Statut terminé */
+#scraping-status.success {
+    color: #4caf50;
+    background-color: #e8f5e9;
+}
+
+/* Statut en erreur */
+#scraping-status.error {
+    color: #f44336;
+    background-color: #fdecea;
+}
+
+/* Zone de sortie */
+#output {
+    font-family: 'Roboto Mono', monospace;
+    font-size: 12px;
+    white-space: pre-wrap;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    color: #333;
+}

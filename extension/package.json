@@ -4,7 +4,7 @@
   "description": "Chrome extension to scrape Spotify playlist data",
   "main": "src/background/background.js",
   "scripts": {
-    "start": "echo 'No build step required'"
+    "build": "nest build && cp -R src/views dist/"
   },
   "devDependencies": {
     "@types/chrome": "^0.0.283"
